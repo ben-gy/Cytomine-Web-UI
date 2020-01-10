@@ -1009,6 +1009,12 @@ link-mode,Mode,Mode,
 absolute-link-mode,Absolute,Absolu,
 relative-link-mode,Relative,Relatif,
 hide-successful-upload,Hide successful uploads,Cacher les uploads réussis,Ocultar cargas exitosas
+minimum,Minimum,Minimum
+maximum,Maximum,Maximum
+sample-histogram-abbr,ch.,can.
+button-auto,Auto,Auto
+button-switch-histogram-scale-to-log,Switch to log histogram,Utiliser un histogramme log
+button-switch-histogram-scale-to-linear,Switch to linear histogram,Utiliser un histogramme linéaire
 no-trusted-source-fitting-criteria,No trusted source fitting criteria,Aucune source de confiance ne remplissant les critères de recherche,No hay criterios de ajuste de fuentes de confianza
 no-tag-fitting-criteria,No tag fitting criteria,Aucun tag ne remplissant les critètes de recherche,No hay criterios de ajuste de etiquetas
 no-trusted-source,No trusted source,Pas de source de confiance,Ninguna fuente de confianza
