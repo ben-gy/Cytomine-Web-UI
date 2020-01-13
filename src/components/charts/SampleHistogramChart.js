@@ -1,5 +1,4 @@
-import {Line, Bar} from 'vue-chartjs';
-import ChartZoom from 'chartjs-plugin-zoom';
+import {Bar} from 'vue-chartjs';
 
 export default {
   name: 'sample-histogram-chart',

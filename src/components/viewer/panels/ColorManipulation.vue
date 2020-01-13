@@ -27,6 +27,27 @@
   </b-tabs>
 
   <table>
+    <tr>
+      <td>{{ $t('contrast') }}</td>
+      <td>
+        <cytomine-slider v-model="contrast" :min="0.25" :max="10" :interval="0.25" :integer-only="false"/>
+      </td>
+    </tr>
+    <tr>
+      <td>{{ $t('gamma') }}</td>
+      <td>
+        <cytomine-slider v-model="gamma" :min="0.1" :max="4" :interval="0.1" :integer-only="false"/>
+      </td>
+    </tr>
+    <tr class="has-border-bottom">
+      <td>{{$t('inverse')}}</td>
+      <td>
+        <b-switch v-model="inverse" class="switch">
+          <template v-if="inverse">{{$t('yes')}}</template>
+          <template v-else>{{$t('no')}}</template>
+        </b-switch>
+      </td>
+    </tr>
     <tr v-if="filters && filters.length > 0" class="has-border-bottom">
       <td>{{ $t('filter') }}</td>
       <td>
@@ -198,6 +219,7 @@ td:last-child {
 }
 
 .actions {
+  padding-top: 1em;
   margin-bottom: 0.5em;
 }
 
