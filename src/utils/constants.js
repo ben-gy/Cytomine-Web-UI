@@ -33,8 +33,6 @@ export default {
   BROADCASTING_USERS_REFRESH_INTERVAL: 10000,
   TRACKING_REFRESH_INTERVAL: 500,
   HISTOGRAM_REFRESH_INTERVAL: 3000,
-  ANNOTATION_STROKE_COLOR:  [0, 0, 0, 1],
-  ANNOTATION_STROKE_SELECT_COLOR: [0, 153, 255, 1],
   MAX_IMAGES_FOR_FILTER: 50000,
   // ---
   IDLE_DURATION: 120, // if the user does not move his mouse on the page during this duration, he is considered as inactive - no more ping (expressed in seconds)
