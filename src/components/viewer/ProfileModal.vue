@@ -32,15 +32,18 @@
         </div>
       </div>
 
-      <div class="profile-box" v-if="!loading">
-        <annotation-profile-chart
-          @error="val => error = val"
-          :annotation="annotation"
-          :css-classes="'profile-chart-container'"
-          ref="chart"
-        ></annotation-profile-chart>
-      </div>
-
+      <template v-if="!loading">
+        <div class="profile-box" v-if="isPoint">
+          <annotation-profile-chart
+              @error="val => error = val"
+              :annotation="annotation"
+              :bpc="bpc"
+              :css-classes="'profile-chart-container'"
+              ref="chart"
+          />
+        </div>
+        <annotation-profile-projection-table v-else :annotation="annotation" :spatial-axis="spatialAxis" :image="image" />
+      </template>
     </template>
   </cytomine-modal-card>
 </template>
@@ -57,7 +60,8 @@ export default {
   },
   props: {
     annotation: Object,
-    image: {type: Object, default: null}
+    image: {type: Object, default: null},
+    spatialAxis: {type: Boolean, default: false}
   },
   data() {
     return {
@@ -78,7 +82,25 @@ export default {
       return `${this.annotation.url}?maxSize=${this.thumbSize}&square=true&complete=true&thickness=2&increaseArea=1.25&draw=true`;
     },
     bpc() {
-      return (this.image && this.image.bitDepth) ? this.image.bitDepth : 8;
+      return (this.image && this.image.bitPerSample) ? this.image.bitPerSample: 8;
+    },
+    isPoint() {
+      return this.annotation.location && this.annotation.location.includes('POINT');
+    },
+    title() {
+      if (this.isPoint) {
+        return this.$t('profile');
+      }
+      else if (this.spatialAxis && this.image.channels > 1) {
+        return this.$t('fluorescence-spectra');
+      }
+      else if (this.spatialAxis && this.image.depth > 1) {
+        return this.$t('depth-spectra');
+      }
+      else if (this.spatialAxis && this.image.duration > 1) {
+        return this.$t('temporal-spectra');
+      }
+      return this.$t('profile-projection');
     }
   },
   methods: {
