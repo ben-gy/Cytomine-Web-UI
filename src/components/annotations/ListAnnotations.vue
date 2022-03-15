@@ -235,6 +235,10 @@
       </div>
     </div>
 
+    <b-message type="is-warning" has-icon icon-size="is-small" v-if="reachedLimit">
+      {{ $t('too-much-categories-to-display', {toDisplay: this.categoryOptions.length, displayed: this.limitedCategoryOptions.length}) }}
+    </b-message>
+
     <list-annotations-by v-for="prop in categoryOptions" :key="`${selectedCategorization.categorization}${prop.id}`"
       :categorization="selectedCategorization.categorization"
       :size="selectedSize.size"
@@ -308,6 +312,7 @@ import TrackTreeMultiselect from '@/components/track/TrackTreeMultiselect';
 const storeOptions = {rootModuleProp: 'storeModule'};
 // redefine helpers to use storeOptions and correct module path
 const localSyncMultiselectFilter = (filterName, options) => syncMultiselectFilter(null, filterName, options, storeOptions);
+const MAX_ITEMS_PER_CATEGORY = constants.ANNOTATIONS_MAX_ITEMS_PER_CATEGORY;
 
 export default {
   name: 'list-annotations',
@@ -522,6 +527,12 @@ export default {
         case 'TRACK':
           return this.tracksOptions;
       }
+    },
+    limitedCategoryOptions() {
+      return this.categoryOptions.slice(0, MAX_ITEMS_PER_CATEGORY);
+    },
+    reachedLimit() {
+      return this.categoryOptions.length > MAX_ITEMS_PER_CATEGORY;
     },
     isByTerm() {
       return this.selectedCategorization.categorization === 'TERM';
