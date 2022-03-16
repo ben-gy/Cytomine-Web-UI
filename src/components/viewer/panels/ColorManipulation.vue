@@ -170,6 +170,31 @@ export default {
       }
     },
 
+    contrast: {
+      get() {
+        return this.imageWrapper.colors.contrast;
+      },
+      set(value) {
+        this.$store.commit(this.imageModule + 'setContrast', value);
+      }
+    },
+    gamma: {
+      get() {
+        return this.imageWrapper.colors.gamma;
+      },
+      set(value) {
+        this.$store.commit(this.imageModule + 'setGamma', value);
+      }
+    },
+    inverse: {
+      get() {
+        return this.imageWrapper.colors.inverse;
+      },
+      set(value) {
+        this.$store.commit(this.imageModule + 'setInverse', value);
+      }
+    },
+    
     histogramScale: {
       get() {
         return this.imageWrapper.colors.histogramScale;
